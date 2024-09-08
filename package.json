@@ -1,0 +1,32 @@
+{
+  "name": "vite-plugin-guard-like-watch",
+  "version": "0.0.1",
+  "description": "A Vite plugin inspired by Ruby Guard's watch feature",
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klondikemarlen/vite-plugin-guard-like-watch.git"
+  },
+  "keywords": [
+    "vite-plugin",
+    "vite",
+    "rollup-plugin",
+    "watch",
+    "guard"
+  ],
+  "author": "Marlen Brunner <klondikemarlen@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klondikemarlen/vite-plugin-guard-like-watch/issues"
+  },
+  "homepage": "https://github.com/klondikemarlen/vite-plugin-guard-like-watch#readme",
+  "devDependencies": {
+    "vite": "^5.4.3",
+    "vitest": "^2.0.5"
+  }
+}
