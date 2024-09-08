@@ -1,4 +1,6 @@
-export function guardLikeWatch() {
+import { Plugin } from "rollup"
+
+export function guardLikeWatch(): Plugin {
   return {
     name: "vite-plugin-guard-like-watch",
     buildStart() {

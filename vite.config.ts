@@ -2,10 +2,12 @@
 
 // Configure Vitest (https://vitest.dev/config/)
 
-import { defineConfig, type Plugin } from "vite"
+import { defineConfig } from "vite"
+
+import { guardLikeWatch } from "./src/index"
 
 export default defineConfig({
-  plugins: [],
+  plugins: [guardLikeWatch()],
   test: {
     globals: true,
   },
