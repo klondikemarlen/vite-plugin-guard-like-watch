@@ -4,7 +4,7 @@
     "module": "node16",
     "moduleResolution": "node16",
     "paths": {
-      "@/*": ["./src/*", "./dist/*"]
+      "@/*": ["./src/*", "./dist/*", "./example/*"]
     },
     "typeRoots": ["./node_modules/@types", "./@types"],
     "strict": true,
@@ -19,5 +19,5 @@
     "isolatedModules": true,
     "useDefineForClassFields": true
   },
-  "include": ["src/**/*", "tests/**/*"]
+  "include": ["src/**/*", "tests/**/*", "example/**/*"],
 }

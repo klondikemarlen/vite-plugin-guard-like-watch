@@ -3,11 +3,11 @@
   "compilerOptions": {
     "baseUrl": "./../",
     "paths": {
-      "@/*": ["./src/*", "./tests/*"]
+      "@/*": ["./src/*", "./tests/*", "./example/*"]
     },
     "typeRoots": ["../node_modules/@types", "../@types", "./@types"],
-    "types": ["node", "../vitest/globals"],
+    "types": ["node", "../vitest/globals"]
   },
   // Note: "" is a magic value, that lets @/... path imports work for files in the tests/ directory.
-  "include": ["../src/**/*", "../tests/**/*", ""]
+  "include": ["../src/**/*", "../tests/**/*", "../example/**/*", ""]
 }
