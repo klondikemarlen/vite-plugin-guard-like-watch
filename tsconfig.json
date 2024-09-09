@@ -6,6 +6,7 @@
     "paths": {
       "@/*": ["./src/*", "./dist/*"]
     },
+    "typeRoots": ["./node_modules/@types", "./@types"],
     "strict": true,
     "declaration": true,
     "declarationMap": true,

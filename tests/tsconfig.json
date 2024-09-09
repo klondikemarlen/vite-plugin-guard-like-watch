@@ -1,0 +1,13 @@
+{
+  "extends": "./../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./../",
+    "paths": {
+      "@/*": ["./src/*", "./tests/*"]
+    },
+    "typeRoots": ["../node_modules/@types", "../@types", "./@types"],
+    "types": ["node", "../vitest/globals"],
+  },
+  // Note: "" is a magic value, that lets @/... path imports work for files in the tests/ directory.
+  "include": ["../src/**/*", "../tests/**/*", ""]
+}

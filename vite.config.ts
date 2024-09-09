@@ -1,14 +1,29 @@
 /// <reference types="vitest/config" />
 
-// Configure Vitest (https://vitest.dev/config/)
-
 import { defineConfig } from "vite"
+import tsconfigPaths from "vite-tsconfig-paths"
 
 import { guardLikeWatch } from "./src/index"
 
+// Configure Vitest (https://vitest.dev/config/)
 export default defineConfig({
-  plugins: [guardLikeWatch()],
+  plugins: [
+    tsconfigPaths({
+      root: ".",
+      projects: ["./tsconfig.json", "./tests/tsconfig.json"],
+    }),
+    guardLikeWatch(),
+  ],
   test: {
     globals: true,
+    root: ".",
+    globalSetup: "./tests/global-setup.ts",
+    setupFiles: ["./tests/setup.ts"],
+    // Mocking
+    clearMocks: true,
+    mockReset: true,
+    restoreMocks: true,
+    unstubEnvs: true,
+    unstubGlobals: true,
   },
 })
