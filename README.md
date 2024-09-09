@@ -46,6 +46,14 @@ export default defineConfig({
    npm install
    ```
 
+4. Run the tests.
+
+   ```bash
+   npm run test
+   # or
+   npm t(est)
+   ```
+
 ## Deployment
 
 Plugin located at https://www.npmjs.com/package/vite-plugin-guard-like-watch.
