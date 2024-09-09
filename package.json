@@ -2,7 +2,7 @@
   "name": "vite-plugin-guard-like-watch",
   "version": "0.0.1",
   "description": "A Vite plugin inspired by Ruby Guard's watch feature",
-  "main": "index.js",
+  "main": "plugin.js",
   "scripts": {
     "build": "vite build",
     "dev": "vite",
