@@ -20,7 +20,15 @@ export default defineConfig({
     /* for example, use global to avoid globals imports (describe, test, expect): */
     // globals: true,
   },
-  plugins: [guardLikeWatch()],
+  plugins: [
+    // Note: debug is optional, but you'll probably need it to get set up.
+    guardLikeWatch(/(.*\/example)\.ts/, (match) => [`${match[1]}.html`, `${match[1]}.txt`], true),
+    guardLikeWatch({
+      pattern: /(.*)\/example\/example\.ts/,
+      action: (match) => [`${match[1]}/src/plugin.ts`],
+      debug: true,
+    }),
+  ],
 })
 ```
 
