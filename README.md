@@ -65,6 +65,6 @@ Plugin located at https://www.npmjs.com/package/vite-plugin-guard-like-watch.
    ```
 
 2. Publish the package.
-   `bash
-npm publish
-`
+   ```bash
+   npm publish
+   ```
