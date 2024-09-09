@@ -12,7 +12,14 @@ export default defineConfig({
       root: ".",
       projects: ["./tsconfig.json", "./tests/tsconfig.json"],
     }),
-    guardLikeWatch(),
+    guardLikeWatch([
+      {
+        pattern: /(.*\/example)\.ts/,
+        action(match) {
+          return [`${match[1]}.html`, `${match[1]}.txt`]
+        },
+      },
+    ]),
   ],
   test: {
     globals: true,
