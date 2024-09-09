@@ -1,64 +1,86 @@
 import { Plugin } from "rollup"
 
-export type Watcher =
-  | {
-      pattern: RegExp | string
-      action: (match: RegExpMatchArray, id: string) => string[]
-      debug?: boolean
-    }
-  | [
-      pattern: RegExp | string,
-      action: (match: RegExpMatchArray, id: string) => string[],
-      debug?: boolean,
-    ]
+export type WatchPattern = RegExp | string
+export type WatchAction = (match: RegExpMatchArray, id: string) => string[]
+export type WatchOptions = {
+  pattern: WatchPattern
+  action: WatchAction
+  debug?: boolean
+}
 
 /**
  * A Vite plugin that allows you to watch additional files when a file changes.
  *
  * Example:
  * ```ts
- * guardLikeWatch([[/(.*\/example)\.ts/, (match) => [`${match[1]}.html`, `${match[1]}.txt`], true]]),
+ * guardLikeWatch(/(.*\/example)\.ts/, (match) => [`${match[1]}.html`, `${match[1]}.txt`], true),
  * ```
  * or
  * ```ts
- * guardLikeWatch([
- *  {
+ * guardLikeWatch({
  *    pattern: /(.*\/example)\.ts/,
  *    action: (match) => [`${match[1]}.html`, `${match[1]}.txt`],
  *    debug: true,
- *   },
- * ])
+ * })
  * ```
+ *
+ * If you want multiple patterns, just make use a separate `guardLikeWatch` plugin useage for each pattern.
  */
-export function guardLikeWatch(watchers: Watcher[]): Plugin {
+export function guardLikeWatch(pattern: WatchPattern, action: WatchAction, debug?: boolean): Plugin
+export function guardLikeWatch(watch: WatchOptions): Plugin
+export function guardLikeWatch(
+  watchOptionsOrWatchPattern: WatchOptions | WatchPattern,
+  maybeAction?: WatchAction,
+  maybeDebug?: boolean
+): Plugin {
+  let pattern: WatchPattern
+  let action: WatchAction
+  let debug: boolean
+  if (isWatchOptions(watchOptionsOrWatchPattern)) {
+    const watchOptions = watchOptionsOrWatchPattern
+    pattern = watchOptions.pattern
+    action = watchOptions.action
+    debug = watchOptions.debug ?? false
+  } else {
+    pattern = watchOptionsOrWatchPattern
+    if (maybeAction === undefined) {
+      throw new Error("Expected the second argument to be a WatchAction function.")
+    }
+    action = maybeAction
+    debug = maybeDebug ?? false
+  }
+
   return {
     name: "vite-plugin-guard-like-watch",
     transform(_code, id) {
-      for (const watcher of watchers) {
-        const pattern = Array.isArray(watcher) ? watcher[0] : watcher.pattern
-        const regexp = new RegExp(pattern)
-        const match = id.match(regexp)
-        if (match === null || match === undefined) return
+      const regexp = new RegExp(pattern)
+      const match = id.match(regexp)
+      if (match === null || match === undefined) return
 
-        const action = Array.isArray(watcher) ? watcher[1] : watcher.action
-        const filesToWatch = action(match, id)
+      const filesToWatch = action(match, id)
 
-        const debug = Array.isArray(watcher) ? watcher[2] : watcher.debug
-        if (debug) {
-          console.debug(
-            `\nguard-like-watch:\n` +
-              ` -> test file (id): ${id}\n` +
-              ` -> additional files that will trigger this test to re-run:\n` +
-              filesToWatch.map((file) => `    - ${file}`).join("\n")
-          )
-        }
+      if (debug) {
+        console.debug(
+          `\nguard-like-watch:\n` +
+            ` -> test file (id): ${id}\n` +
+            ` -> additional files that will trigger this test to re-run:\n` +
+            filesToWatch.map((file) => `    - ${file}`).join("\n")
+        )
+      }
 
-        for (const file of filesToWatch) {
-          this.addWatchFile(file)
-        }
+      for (const file of filesToWatch) {
+        this.addWatchFile(file)
       }
     },
   }
+}
+
+function isWatchOptions(watch: WatchOptions | WatchPattern): watch is WatchOptions {
+  if (typeof watch === "object" && "pattern" in watch && "action" in watch) {
+    return true
+  }
+
+  return false
 }
 
 export default guardLikeWatch
