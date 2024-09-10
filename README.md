@@ -28,6 +28,28 @@ export default defineConfig({
       action: (match) => [`${match[1]}/src/vite-plugin-guard-like-watch.ts`],
       debug: true,
     }),
+    // Relative paths will also work, though I'm not entirely sure of the implications. e.g.
+    guardLikeWatch(
+      /tests\/mailers\/(.*)\.test\.ts/,
+      (match) => [`src/templates/${match[1]}.html`, `src/templates/${match[1]}.txt`],
+      true
+    ),
+    guardLikeWatch({
+      pattern: /tests\/mailers\/(.*)\.test\.ts/,
+      action: (match) => [`src/templates/${match[1]}.html`, `src/templates/${match[1]}.txt`],
+      debug: true,
+    }),
+    // You can also use a string instead of a RegExp. e.g.
+    guardLikeWatch(
+      "tests/mailers/*.test.ts",
+      (match) => [`src/templates/${match[1]}.html`, `src/templates/${match[1]}.txt`],
+      true
+    ),
+    guardLikeWatch({
+      pattern: "tests/mailers/*.test.ts",
+      action: (match) => [`src/templates/${match[1]}.html`, `src/templates/${match[1]}.txt`],
+      debug: true,
+    }),
   ],
 })
 ```
