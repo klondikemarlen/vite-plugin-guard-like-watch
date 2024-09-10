@@ -6,12 +6,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/my-lib.umd.cjs",
-  "module": "./dist/my-lib.js",
+  "main": "./dist/vite-plugin-guard-like-watch.umd.cjs",
+  "module": "./dist/vite-plugin-guard-like-watch.js",
+  "types": "./dist/plugin.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/my-lib.js",
-      "require": "./dist/my-lib.umd.cjs"
+      "import": "./dist/vite-plugin-guard-like-watch.js",
+      "require": "./dist/vite-plugin-guard-like-watch.umd.cjs"
     }
   },
   "scripts": {

@@ -8,22 +8,6 @@ import guardLikeWatch from "./src/plugin"
 
 // Configure Vitest (https://vitest.dev/config/)
 export default defineConfig({
-  plugins: [
-    tsconfigPaths({
-      root: ".",
-      projects: ["./tsconfig.json", "./tests/tsconfig.json"],
-    }),
-    dts({
-      include: ["src/**/*.ts"],
-      outDir: "dist/types",
-    }),
-    guardLikeWatch(/(.*\/example)\.ts/, (match) => [`${match[1]}.html`, `${match[1]}.txt`], true),
-    guardLikeWatch({
-      pattern: /(.*)\/example\/example\.ts/,
-      action: (match) => [`${match[1]}/src/plugin.ts`],
-      debug: true,
-    }),
-  ],
   build: {
     lib: {
       entry: "./src/plugin.ts",
@@ -35,6 +19,21 @@ export default defineConfig({
       external: ["vite"],
     },
   },
+  plugins: [
+    tsconfigPaths({
+      root: ".",
+      projects: ["./tsconfig.json", "./tests/tsconfig.json"],
+    }),
+    dts({
+      include: ["src/**/*.ts"],
+    }),
+    guardLikeWatch(/(.*\/example)\.ts/, (match) => [`${match[1]}.html`, `${match[1]}.txt`], true),
+    guardLikeWatch({
+      pattern: /(.*)\/example\/example\.ts/,
+      action: (match) => [`${match[1]}/src/plugin.ts`],
+      debug: true,
+    }),
+  ],
   test: {
     globals: true,
     root: ".",
