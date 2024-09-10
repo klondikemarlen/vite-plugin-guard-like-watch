@@ -8,7 +8,7 @@
   ],
   "main": "./dist/vite-plugin-guard-like-watch.umd.cjs",
   "module": "./dist/vite-plugin-guard-like-watch.js",
-  "types": "./dist/plugin.d.ts",
+  "types": "./dist/vite-plugin-guard-like-watch.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vite-plugin-guard-like-watch.js",

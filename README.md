@@ -25,7 +25,7 @@ export default defineConfig({
     guardLikeWatch(/(.*\/example)\.ts/, (match) => [`${match[1]}.html`, `${match[1]}.txt`], true),
     guardLikeWatch({
       pattern: /(.*)\/example\/example\.ts/,
-      action: (match) => [`${match[1]}/src/plugin.ts`],
+      action: (match) => [`${match[1]}/src/vite-plugin-guard-like-watch.ts`],
       debug: true,
     }),
   ],

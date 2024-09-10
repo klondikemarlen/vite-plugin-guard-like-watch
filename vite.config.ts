@@ -10,7 +10,7 @@ import guardLikeWatch from "vite-plugin-guard-like-watch"
 export default defineConfig({
   build: {
     lib: {
-      entry: "./src/plugin.ts",
+      entry: "./src/vite-plugin-guard-like-watch.ts",
       name: "VitePluginGuardLikeWatch",
       fileName: "vite-plugin-guard-like-watch",
       formats: ["es", "umd"],
@@ -30,7 +30,7 @@ export default defineConfig({
     guardLikeWatch(/(.*\/example)\.ts/, (match) => [`${match[1]}.html`, `${match[1]}.txt`], true),
     guardLikeWatch({
       pattern: /(.*)\/example\/example\.ts/,
-      action: (match) => [`${match[1]}/src/plugin.ts`],
+      action: (match) => [`${match[1]}/src/vite-plugin-guard-like-watch.ts`],
       debug: true,
     }),
   ],
