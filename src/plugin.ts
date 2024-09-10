@@ -26,9 +26,9 @@ export type WatchOptions = {
  *
  * If you want multiple patterns, just make use a separate `guardLikeWatch` plugin useage for each pattern.
  */
-export function guardLikeWatch(pattern: WatchPattern, action: WatchAction, debug?: boolean): Plugin
-export function guardLikeWatch(watch: WatchOptions): Plugin
-export function guardLikeWatch(
+function guardLikeWatch(pattern: WatchPattern, action: WatchAction, debug?: boolean): Plugin
+function guardLikeWatch(watch: WatchOptions): Plugin
+function guardLikeWatch(
   watchOptionsOrWatchPattern: WatchOptions | WatchPattern,
   maybeAction?: WatchAction,
   maybeDebug?: boolean

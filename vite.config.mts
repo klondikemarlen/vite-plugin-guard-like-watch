@@ -3,7 +3,7 @@
 import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 
-import { guardLikeWatch } from "./src/plugin"
+import guardLikeWatch from "./src/plugin"
 
 // Configure Vitest (https://vitest.dev/config/)
 export default defineConfig({
@@ -19,6 +19,17 @@ export default defineConfig({
       debug: true,
     }),
   ],
+  build: {
+    lib: {
+      entry: "./src/plugin.ts",
+      name: "VitePluginGuardLikeWatch",
+      fileName: "vite-plugin-guard-like-watch",
+      formats: ["es", "umd"],
+    },
+    rollupOptions: {
+      external: ["vite"],
+    },
+  },
   test: {
     globals: true,
     root: ".",
