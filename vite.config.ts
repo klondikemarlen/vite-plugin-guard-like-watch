@@ -4,7 +4,7 @@ import { defineConfig } from "vite"
 import dts from "vite-plugin-dts"
 import tsconfigPaths from "vite-tsconfig-paths"
 
-import guardLikeWatch from "./src/plugin"
+import guardLikeWatch from "vite-plugin-guard-like-watch"
 
 // Configure Vitest (https://vitest.dev/config/)
 export default defineConfig({
