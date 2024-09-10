@@ -1,4 +1,4 @@
-import example from "@/example"
+import example from "@/example.js"
 
 describe("example/example.ts", () => {
   describe(".example", () => {
