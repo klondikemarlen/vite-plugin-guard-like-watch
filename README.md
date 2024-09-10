@@ -41,12 +41,12 @@ export default defineConfig({
     }),
     // You can also use a string instead of a RegExp. e.g.
     guardLikeWatch(
-      "tests/mailers/*.test.ts",
+      "tests/mailers/(.*).test.ts",
       (match) => [`src/templates/${match[1]}.html`, `src/templates/${match[1]}.txt`],
       true
     ),
     guardLikeWatch({
-      pattern: "tests/mailers/*.test.ts",
+      pattern: "tests/mailers/(.*).test.ts",
       action: (match) => [`src/templates/${match[1]}.html`, `src/templates/${match[1]}.txt`],
       debug: true,
     }),
