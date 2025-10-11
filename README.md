@@ -1,3 +1,5 @@
+> ⚠️ **Deprecated:** Now implemented in Vitest v3.2.0+! → [vitest.dev/config/#watchtriggerpatterns](https://vitest.dev/config/#watchtriggerpatterns)
+
 # vite-plugin-guard-like-watch
 
 A Vite plugin inspired by Ruby Guard's watch feature.
